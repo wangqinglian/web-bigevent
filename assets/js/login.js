@@ -48,7 +48,7 @@ $(function () {
                username: $("#form_reg [name=username]").val(),
                password: $("#form_reg [name=password]").val()
           }
-          $.post("http://127.0.0.1:3007/api/reguser", inputParams, function (res) {
+          $.post("/api/reguser", inputParams, function (res) {
                if (res.status !== 0) {
                     return layer.msg(res.message)
                }
@@ -61,10 +61,11 @@ $(function () {
 
      // 监听登录表单的提交事件
      $('#form_login').submit(function (e) {
+          //箭头函数的this指向，指向上一级
           // 阻止默认提交行为  
           e.preventDefault()
           $.ajax({
-               url: 'http://127.0.0.1:3007/api/login',
+               url: '/api/login',
                method: 'POST',
                // 快速获取表单中的数据
                data: $(this).serialize(),
